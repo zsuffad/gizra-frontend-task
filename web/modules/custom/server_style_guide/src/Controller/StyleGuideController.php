@@ -274,7 +274,7 @@ class StyleGuideController extends ControllerBase {
           '#width' => 128,
         ],
         $name,
-        $jobtitles[rand(0, count($jobtitles)-1)],
+        $jobtitles[rand(0, count($jobtitles) - 1)],
         $roles[rand(0, 3)],
         strtolower(str_replace(' ', '.', $name)) . '@gizra.com',
         '+36123456789'

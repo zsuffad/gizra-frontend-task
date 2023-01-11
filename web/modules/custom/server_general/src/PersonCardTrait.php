@@ -9,7 +9,6 @@ namespace Drupal\server_general;
  * Helper methods for rendering Person Card type.
  *
  * The Peson card is used as representation of people.
- *
  */
 trait PersonCardTrait {
 
