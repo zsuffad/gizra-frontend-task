@@ -27,6 +27,11 @@ opensans:
     base:
       '//fonts.googleapis.com/css?family=Open+Sans:400,400i,700': { external: true }
 
+inter:
+  css:
+    base:
+      '//fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap': { external: true }
+
 font-awesome:
   remote: https://fortawesome.github.io/Font-Awesome/
   version: 6.2.0
@@ -50,3 +55,8 @@ slick:
       /libraries/slick-carousel/slick/slick-theme.css: { weight: -9 }
   dependencies:
     - core/jquery
+
+person-card:
+  css:
+    component:
+      dist/css/person-card.css: {}

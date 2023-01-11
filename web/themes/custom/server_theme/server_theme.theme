@@ -193,8 +193,30 @@ function server_theme_theme() {
     ],
   ];
 
+  // Person card.
+  $info['server_theme_person_card'] = [
+    'variables' => [
+      // A render array.
+      'items' => NULL,
+      'image' => NULL,
+      'name' => NULL,
+      'position' => NULL,
+      'userrole' => NULL,
+      'emailaddress' => NULL,
+      'phonenumber' => NULL,
+    ],
+  ];
+
   // Card with elements positioned in the center of it.
-  $info['server_theme_card__centered'] = [
+  $info['server_theme_person_cards'] = [
+    'variables' => [
+      // A render array.
+      'items' => NULL,
+    ],
+  ];
+
+  // Card with elements positioned in the center of it.
+  $info['server_theme_cards'] = [
     'variables' => [
       // A render array.
       'items' => NULL,
