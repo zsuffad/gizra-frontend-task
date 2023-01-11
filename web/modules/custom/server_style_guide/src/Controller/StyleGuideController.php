@@ -10,6 +10,7 @@ use Drupal\node\Entity\Node;
 use Drupal\pluggable_entity_view_builder\BuildFieldTrait;
 use Drupal\server_general\ButtonTrait;
 use Drupal\server_general\CardTrait;
+use Drupal\server_general\PersonCardTrait;
 use Drupal\server_general\ElementTrait;
 use Drupal\server_general\ElementWrapTrait;
 use Drupal\server_general\LinkTrait;
@@ -29,6 +30,7 @@ class StyleGuideController extends ControllerBase {
   use BuildFieldTrait;
   use ButtonTrait;
   use CardTrait;
+  use PersonCardTrait;
   use ElementTrait;
   use ElementWrapTrait;
   use LinkTrait;
@@ -131,6 +133,12 @@ class StyleGuideController extends ControllerBase {
     $element = $this->getRelatedContentCarousel(TRUE);
     $build[] = $this->wrapElementNoContainer($element, 'Cards: Carousel (Related content, featured)');
 
+    $element = $this->getPersonCard();
+    $build[] = $this->wrapElementWideContainer($element, 'Person Card');
+
+    $element = $this->getPersonCards();
+    $build[] = $this->wrapElementWideContainer($element, 'Person Cards Grid');
+
     $element = $this->getCta();
     $build[] = $this->wrapElementNoContainer($element, 'Element: Call to Action');
 
@@ -217,6 +225,63 @@ class StyleGuideController extends ControllerBase {
     );
 
     return $this->wrapContainerVerticalSpacingBig($elements);
+  }
+
+  /**
+   * Get Simple Person card.
+   *
+   * @return array
+   *   Render array.
+   */
+  protected function getPersonCard(): array {
+    $elements = [];
+    $elements[] = $this->buildPersonCard(
+      [
+        '#theme' => 'image',
+        '#uri' => $this->getPlaceholderPersonImage(128),
+        '#width' => 128,
+      ],
+      'Jane Cooper',
+      'Paradigm Representative',
+      'Admin',
+      'jane@gizra.com',
+      '+36123456789'
+    );
+
+    return $elements;
+  }
+
+  /**
+   * Get Person cards grid.
+   *
+   * @return array
+   *   Render array.
+   */
+  protected function getPersonCards(): array {
+    $elements = [];
+    $names = ['Izaiah Bautista', 'Angie Gilbert', 'Ernest Stanley',
+      'Matias Mcgee', 'Penelope Watts', 'Neil Tapia', 'Russell Combs',
+      'Zavier Knox', 'Timothy Anderson', 'Jacqueline Fernandez',
+    ];
+    $roles = ['Admin', 'Editor', 'Translator', 'Developer'];
+    $jobtitles = ['Urban Planner', 'Paradigm Representative', 'Speech-Language Pathologist', 'Landscape Architect', 'Epidemiologist'];
+
+    foreach ($names as $name) {
+      $elements[] = $this->buildPersonCard(
+        [
+          '#theme' => 'image',
+          '#uri' => $this->getPlaceholderPersonImage(128),
+          '#width' => 128,
+        ],
+        $name,
+        $jobtitles[rand(0, count($jobtitles) - 1)],
+        $roles[rand(0, 3)],
+        strtolower(str_replace(' ', '.', $name)) . '@gizra.com',
+        '+36123456789'
+      );
+    }
+
+    return $this->buildPersonCards($elements);
   }
 
   /**
